@@ -12,12 +12,12 @@ def show_data(path='<file_name>.mdb', table='<table_name>'):
 
 
 mdb_file = '/Users/jamesbrown/Desktop/epiStuff/epiMetrics.mdb';
+tables = show_tables(mdb_file)
+data = show_data(path=mdb_file, table='metaFields')
 
-d = show_data(path=mdb_file, table='metaFields')
-
-columns = d[0].split(',')
+columns = data[0].split(',')
 columns.append('')
-data = [i.split(',') for i in d[1:]]
+rows = [i.split(',') for i in data[1:]]
 
-df = pd.DataFrame(columns=columns, data=data)
-df = df.iloc[:, :-1]
+df = pd.DataFrame(columns=columns, data=rows)
+# df = df.iloc[:, :-1]
